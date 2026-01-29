@@ -65,3 +65,56 @@
   margin: 20px;
   cursor: pointer;
 }
+
+
+.shimmer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 20px 32px;
+}
+
+.shimmer-card {
+  width: 200px;
+  height: 350px;
+  margin: 25px 15px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    #eeeeee 25%,
+    #f5f5f5 37%,
+    #eeeeee 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.login {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #7f8269;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.login:hover {
+  background-color: orange;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+}

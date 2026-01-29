@@ -1,10 +1,16 @@
 import RestuarentCard from "./RestuarentCard";
 //import resList from "../utils/mockData";  
 import { useEffect, useState } from "react";  
-
+import { Shimmer } from "./Shimmer";
 
 const Body = () =>{
+
+const [searchText, setSearchText] = useState("");
+
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  
 
 useEffect(()=> {
 
@@ -19,21 +25,52 @@ const fetchData = async () =>{
   console.log(json);
   // optional chaining
   setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants );
+  setFilteredRestaurants( json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants );
+};
+
+// if(listOfRestaurants.length === 0) {{
+//     return <Shimmer />;
+//   }
+// }
+if (!listOfRestaurants || listOfRestaurants.length === 0) {
+  return <Shimmer />;
 }
+
 
   return (
   <div className="body">
      <div className="filter"> 
+       <div className="search">
+        <input type="text" className="search-box" placeholder="Search for restaurants..." value={searchText}
+         onChange={(e)=>{
+           setSearchText(e.target.value);
+        }}
+        />
+
+        <button className="search-btn" 
+        // filter the restaurant cards based on search text and update the UI
+        onClick={()=>{
+           console.log(searchText);
+           const filtered = listOfRestaurants.filter((res) => res.info.name
+          .toLowerCase()
+           .includes(searchText.toLowerCase())
+            );
+           
+            setFilteredRestaurants(filtered);
+        }}
+
+        >Search</button>
+       </div>
          <button className="filter-btn" onClick={()=>{
-            const filtered = listOfRestaurants.filter((res)=> res.info.avgRating > 4.3);
-            setListOfRestaurants(filtered);
+            const filtered = listOfRestaurants.filter((res)=> res.info.avgRating > 4.5);
+            setFilteredRestaurants(filtered);
              console.log(filtered);
          }}>Top Rated restaurant</button>
         
        </div>
      <div className="res-container">
         
-         {listOfRestaurants.map((restaurant) => 
+         {filteredRestaurants.map((restaurant) => 
           (<RestuarentCard key={restaurant.info.id} resData = {restaurant}/>))}
          
      </div>

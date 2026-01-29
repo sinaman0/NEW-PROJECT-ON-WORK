@@ -9,7 +9,7 @@
   "author": "\"Akshay Saini\"",
   "type": "commonjs",
   "scripts": {
-    "start":"parcel index.html",
+    "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest"
   },
@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "react-router": "^6.21.3",
+    "react-router-dom": "^6.21.3"
   }
 }
