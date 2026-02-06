@@ -7,6 +7,7 @@ import About from "./components/About";
 import Cont from "./components/Contact";
 import ErrorPage from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Menu from "./components/RestuarentMenu";
 
 
 // App Layout
@@ -54,7 +55,12 @@ const appRouter = createBrowserRouter([
 {
   path:"/contact",
   element:<Cont />,
-}
+},
+
+{
+  path:"/menu",
+  element:<Menu />,
+},
   ]
   
 },
